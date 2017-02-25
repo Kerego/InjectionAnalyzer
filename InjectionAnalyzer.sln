@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InjectionAnalyzer", "InjectionAnalyzer\InjectionAnalyzer\InjectionAnalyzer.csproj", "{62DF6A91-2990-46C9-838C-18DD43A5D3B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InjectionAnalyzer.Test", "InjectionAnalyzer\InjectionAnalyzer.Test\InjectionAnalyzer.Test.csproj", "{8CAC6524-1413-439B-8F4A-117B0A6693F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InjectionAnalyzer.Vsix", "InjectionAnalyzer\InjectionAnalyzer.Vsix\InjectionAnalyzer.Vsix.csproj", "{44315B25-E63E-4C3B-B5A8-0A09F6DE62CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62DF6A91-2990-46C9-838C-18DD43A5D3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62DF6A91-2990-46C9-838C-18DD43A5D3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62DF6A91-2990-46C9-838C-18DD43A5D3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62DF6A91-2990-46C9-838C-18DD43A5D3B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CAC6524-1413-439B-8F4A-117B0A6693F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CAC6524-1413-439B-8F4A-117B0A6693F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CAC6524-1413-439B-8F4A-117B0A6693F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CAC6524-1413-439B-8F4A-117B0A6693F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44315B25-E63E-4C3B-B5A8-0A09F6DE62CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44315B25-E63E-4C3B-B5A8-0A09F6DE62CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44315B25-E63E-4C3B-B5A8-0A09F6DE62CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44315B25-E63E-4C3B-B5A8-0A09F6DE62CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
