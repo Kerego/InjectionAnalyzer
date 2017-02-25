@@ -26,46 +26,53 @@ namespace InjectionAnalyzer.Test
 		public void TestMethod2()
 		{
 			var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-        }
-    }";
+namespace ConsoleApplication1
+{
+	class TypeName
+	{
+		private readonly string _navigationService;
+	}
+}";
 			var expected = new DiagnosticResult
 			{
 				Id = "InjectionAnalyzer",
-				Message = String.Format("Type name '{0}' contains lowercase letters", "TypeName"),
-				Severity = DiagnosticSeverity.Warning,
+				Message = String.Format("Readonly Field '{0}' is injected in none of the constructors.", "_navigationService"),
+				Severity = DiagnosticSeverity.Info,
 				Locations =
 					new[] {
-							new DiagnosticResultLocation("Test0.cs", 11, 15)
+							new DiagnosticResultLocation("Test0.cs", 13, 29)
 						}
 			};
 
 			VerifyCSharpDiagnostic(test, expected);
 
 			var fixtest = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
-    namespace ConsoleApplication1
-    {
-        class TYPENAME
-        {   
-        }
-    }";
+namespace ConsoleApplication1
+{
+	class TypeName
+	{
+		private readonly string _navigationService;
+
+		public TypeName(string navigationService)
+		{
+			_navigationService = navigationService;
+		}
+	}
+}";
 			VerifyCSharpFix(test, fixtest);
 		}
 
@@ -76,7 +83,7 @@ namespace InjectionAnalyzer.Test
 
 		protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
 		{
-			return new InjectionAnalyzerAnalyzer();
+			return new InjectionAnalyzer();
 		}
 	}
 }

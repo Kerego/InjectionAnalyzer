@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using InjectionAnalyzer;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

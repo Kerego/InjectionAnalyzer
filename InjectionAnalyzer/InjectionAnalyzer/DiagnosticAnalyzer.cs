@@ -11,7 +11,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace InjectionAnalyzer
 {
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
-	public class InjectionAnalyzerAnalyzer : DiagnosticAnalyzer
+	public class InjectionAnalyzer : DiagnosticAnalyzer
 	{
 		public const string DiagnosticId = "InjectionAnalyzer";
 
@@ -20,32 +20,36 @@ namespace InjectionAnalyzer
 		private static readonly LocalizableString Title = new LocalizableResourceString(nameof(Resources.AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 		private static readonly LocalizableString MessageFormat = new LocalizableResourceString(nameof(Resources.AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 		private static readonly LocalizableString Description = new LocalizableResourceString(nameof(Resources.AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
-		private const string Category = "Naming";
+		private const string Category = "Fields";
 
-		private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, isEnabledByDefault: true, description: Description);
+		private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Info, isEnabledByDefault: true, description: Description);
 
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
 		public override void Initialize(AnalysisContext context)
 		{
-			// TODO: Consider registering other actions that act on syntax instead of or in addition to symbols
-			// See https://github.com/dotnet/roslyn/blob/master/docs/analyzers/Analyzer%20Actions%20Semantics.md for more information
-			context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+			context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field);
 		}
 
 		private static void AnalyzeSymbol(SymbolAnalysisContext context)
 		{
-			// TODO: Replace the following code with your own analysis, generating Diagnostic objects for any issues you find
-			var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
+			var field = (IFieldSymbol)context.Symbol;
 
-			// Find just those named type symbols with names containing lowercase letters.
-			if (namedTypeSymbol.Name.ToCharArray().Any(char.IsLower))
-			{
-				// For all such symbols, produce a diagnostic.
-				var diagnostic = Diagnostic.Create(Rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
+			if (!field.IsReadOnly || !field.Name.StartsWith("_"))
+				return;
 
-				context.ReportDiagnostic(diagnostic);
-			}
+			if (field
+				.ContainingType
+				.Constructors
+				.Any(x => x
+					.OriginalDefinition
+					.Parameters
+					.Any(y => y.Type == field.Type && (y.Name == field.Name || $"_{y.Name}" == field.Name))))
+				return;
+
+			var diagnostic = Diagnostic.Create(Rule, field.Locations[0], field.Name);
+
+			context.ReportDiagnostic(diagnostic);
 		}
 	}
 }
