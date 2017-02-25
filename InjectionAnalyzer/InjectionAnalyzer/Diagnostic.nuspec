@@ -2,18 +2,17 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>InjectionAnalyzer</id>
-    <version>1.0.0.0</version>
+    <version>0.9.0.0</version>
     <title>InjectionAnalyzer</title>
-    <authors>kerego</authors>
-    <owners>kerego</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <authors>Bejenari Marian</authors>
+    <owners>Bejenari Marian</owners>
+    <licenseUrl>https://github.com/Kerego/InjectionAnalyzer/blob/master/License.md</licenseUrl>
+    <projectUrl>https://github.com/Kerego/InjectionAnalyzer</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>InjectionAnalyzer</description>
+    <description>rovides diagnostics and code fixes for uninitialized private fields.</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright</copyright>
-    <tags>InjectionAnalyzer, analyzers</tags>
+    <tags>InjectionAnalyzer, analyzers, roslyn, injection</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
